@@ -6,4 +6,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/web', function () {
     return view('welcome');
 });
-Route::get('/', [StudentsController::class, 'index']);
+
+//view
+Route::get('/', [StudentsController::class, 'index'])->name('std.viewStudents');
+
+//create 
+Route :: post('/create-new', [StudentsController::class,'createNewSTD'])->name('std.create');
