@@ -118,7 +118,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <form method="post" action="{{route('std.create')}}">
+              <form method="POST" action="{{route('std.create')}}">
                   @csrf
                   
                   <div class="mb-3">

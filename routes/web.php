@@ -8,13 +8,13 @@ Route::get('/web', function () {
 });
 
 //view
-Route::get('/view', [StudentsController::class, 'index'])->name('std.viewStudents');
+Route::get('/', [StudentsController::class, 'index'])->name('std.viewStudents');
 
 //create 
 Route :: post('/create-new', [StudentsController::class,'createNewSTD'])->name('std.create');
 
 //Update
-Route ::put('/Update/{id}',[StudentsController::class,'UpdateSTD'])->name('std.update');
+Route ::put('/update/{id}',[StudentsController::class,'updateSTD'])->name('std.update');
 
 //Delete
-Route :: delete('/Delete/{id}',[StudentsController::class,'DeleteSTD'])->name('std.delete');
+Route :: delete('/delete/{id}',[StudentsController::class,'deleteSTD'])->name('std.delete');
