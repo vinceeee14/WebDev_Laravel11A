@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    // Login
     public function index()
     {
+        if (Session::has('loginId')) {
+            return redirect()->route('std.viewStudents');
+        }
         return view('auth.login');
     }
 
@@ -29,12 +33,38 @@ class AuthController extends Controller
         if ($authLogin && Hash::check($request->password, $authLogin->password)) {
             Auth::login($authLogin);
             Session::put('loginId', $authLogin->id);
-            return redirect()->route('std.myWelcomeView')->with('success', 'Login successful');
+            return redirect()->route('std.viewStudents')->with('success', 'Login successful');
         } else {
             return back()->with('fail', 'Email or password is incorrect');
         }
     }
 
+    // Register
+    public function indexRegister()
+    {
+        if (Session::has('loginId')) {
+            return redirect()->route('std.viewStudents');
+        }
+        return view('auth.register');
+    }
+
+    public function userRegister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $input['name'] = $request->name;
+        $input['email'] = $request->email;
+        $input['password'] = bcrypt($request->password);
+        User::create($input);
+
+        return redirect()->route('auth.index')->with('success', 'Registration successful');
+    }
+
+    // Logout
     public function logout()
     {
         if (Session::has('loginId')) {

@@ -14,6 +14,9 @@
         <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addStudentModal">
             <i class="bi bi-plus-lg"></i> Add Student
         </button>
+
+        <a href="{{ route('auth.logout') }}" class="btn btn-danger mb-3" style="float: right;">Logout</a>
+
     </div>
 
     <div class="card p-3 shadow-sm">
@@ -102,8 +105,13 @@
                     </div>
                 </div>
                 @endforeach
+
+
+
             </tbody>
         </table>
+
+        
     </div>
 
     <!-- Add Student Modal -->
